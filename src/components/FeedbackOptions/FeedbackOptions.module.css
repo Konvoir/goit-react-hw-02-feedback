@@ -4,8 +4,10 @@
   border-radius: 5px;
   cursor: pointer;
   margin-right: 10px;
+  border: 2px solid coral;
 }
 
 .button:hover {
   transform: scale(1.2);
+  background-color: rgba(0, 56, 139, 0.658);
 }
