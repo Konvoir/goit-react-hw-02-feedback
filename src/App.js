@@ -4,7 +4,6 @@ import { FeedbackOptions } from "./components/FeedbackOptions/FeedbackOptions";
 import { Section } from "./components/Section/Section";
 import { Statistics } from "./components/Statistics/Statistics";
 
-import { FEEDBACK_OPTIONS } from "./components/data/FEEDBACK_OPTIONS";
 import css from "./App.module.css";
 
 class App extends Component {
@@ -14,10 +13,9 @@ class App extends Component {
     bad: 0,
   };
 
-  onLeaveFeedback = ({ target }) => {
-    const { feedback } = target.dataset;
+  onLeaveFeedback = (value) => () => {
     this.setState((prevState) => ({
-      [feedback]: prevState[feedback] + 1,
+      [value]: prevState[value] + 1,
     }));
   };
 
@@ -36,12 +34,13 @@ class App extends Component {
     const { good, neutral, bad } = this.state;
     const total = this.countTotalFeedback();
     const positivePercentage = this.countPositiveFeedbackPercentage();
+    const options = Object.keys(this.state);
 
     return (
       <div className={css.container}>
         <Section title="Please leave feedback">
           <FeedbackOptions
-            options={FEEDBACK_OPTIONS}
+            options={options}
             onLeaveFeedback={this.onLeaveFeedback}
           />
         </Section>
